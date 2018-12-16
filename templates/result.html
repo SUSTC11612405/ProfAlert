@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:margin-left="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="http://lib.sustc.edu.cn/media/images/logo_2.png">
+    <title>搜索结果</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/style.css') }}">
+    <style type="text/css">
+        .btn {
+        }
+    </style>
+
+</head>
+<body >
+<!--导航-->
+<div class="navbar navbar-default" style="padding-top:0 ">
+
+    <div class="container-fluid" >
+        <!--logo和导航按钮-->
+        <div class="navbar-brand" >
+            <a href="index.html" ><img alt="Brand" src="{{ url_for('static',filename ='picture/badge.png') }}" height="30" width="25" ></a>
+            <a>南方科技大学导师预约系统</a>
+        </div>
+        <!--导航内容-->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right"  style="margin:10px;">
+                <input  name="trrz.html" type="button" class="btn btn-success"
+                        id="trrz.html" value="登录" onclick="window.location='signin.html'"/>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('index')}}">首页</a></li>
+                <li><a href="{{ url_for('teacher')}}">导师库</a></li>
+                <li><a href="http://www.sustc.edu.cn">学校官网</a></li>
+                <li><a href="{{ url_for('signin')}}">个人主页</a></li>
+                <!--这里要加个判断：case 1: 已登录，直接跳转个人信息页； case 2: 未登录，跳转登录界面-->
+            </ul>
+        </div>
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </div>
+
+<div class="content content_1">
+    <div class="con_top">
+        <div class="books_sel">
+
+            <div class="selector" id="uniform-v_index"><span>导师名</span><select name="v_index" id="v_index" style="opacity: 0;">
+                <option value="all">任意词</option>
+                <option value="title" selected="">导师名</option>
+                <option value="author">研究领域</option>
+            </select></div>
+            <input name="v_value" id="v_value" class="input ui-autocomplete-input" type="text" style="width:80px" onkeydown="if(window.event.keyCode==13){javascript:search();}" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+
+            <input type="button" value="重新检索" class="submit" onclick="javascript:search()" 　="">
+            <input type="button" value="在结果中检索" onclick="javascript:OnSecondSearch(v_index.value)" class="submit submit_1">
+
+
+        </div>
+        <div class="paginal paginal_1">
+            <form name="PageForm" method="post" action="searchshow.jsp">
+
+                <input type="hidden" name="v_index" value="title">
+                <input type="hidden" name="v_value" value="花 ">
+                <input type="hidden" name="v_publisher" value="">
+                <input type="hidden" name="v_author" value="">
+                <input type="hidden" name="v_tablearray" value="bibliosm,serbibm,apabibibm,mmbibm,">
+                <input type="hidden" name="v_secondquery" value="">
+                <input type="hidden" name="sortfield" value="score">
+                <input type="hidden" name="sorttype" value="desc">
+                <input type="hidden" name="pageNum" value="10">
+                页码:<b>1</b>/<b>3348</b>页 每页 <b>10</b> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <font face="webdings" color="#FF0000">9</font>
+                <b><font color="red">1</font></b>
+                <a href="javascript:GotoPage(2)"><b>2</b></a>
+                <a href="javascript:GotoPage(3)"><b>3</b></a>
+                <a href="javascript:GotoPage(4)"><b>4</b></a>
+                <a href="javascript:GotoPage(5)"><b>5</b></a>
+                <a href="javascript:GotoPage(6)"><b>6</b></a>
+                <a href="javascript:GotoPage(7)"><b>7</b></a>
+                <a href="javascript:GotoPage(8)"><b>8</b></a>
+                <a href="javascript:GotoPage(9)"><b>9</b></a>
+                <a href="javascript:GotoPage(10)"><b>10</b></a>
+                <a href="javascript:GotoPage(11)" title="后10页"><font face="webdings">8</font></a>
+                <a href="javascript:GotoPage(3348)" title="尾页"><font face="webdings">:</font></a>
+
+                <input type="hidden" name="v_page">
+            </form>
+            <script language="javascript">
+                function GotoPage(page)
+                {
+                    document.PageForm.v_page.value = page;
+                    document.PageForm.submit();
+                }
+            </script>
+
+        </div>
+
+    </div>
+
+    <div class="con_center">
+        <div class="con_right">
+            <div class="con_r_top">
+
+                <div class="total">
+                    <span class="fbold"> </span>共有<span></span>条记录，耗时[<span id="idTimeSpan1"></span>]秒
+                </div>
+
+                <div class="sortleft">
+                    <label class="label">排序选项</label>
+                    <div class="selector" id="uniform-v_sortfield"><span>匹配度</span><select id="v_sortfield" onchange="paixu()" style="opacity: 0;">
+                        <option value="score" selected="">匹配度</option>
+                        <option value="author">导师名</option>
+                        <option value="subject">关键词</option>
+                    </select></div>
+                    <!--  <label class="label">排序选项</label> -->
+                    <div class="selector" id="uniform-v_sorttype"><span>降序</span><select id="v_sorttype" onchange="paixu()" style="opacity: 0;">
+                        <option value="desc">降序</option>
+                        <option value="asc">升序</option>
+                    </select></div>
+                </div>
+            </div>
+            <div class="con_r_con">
+                <ul class="booklist">
+
+                    <li>
+                        <a href="searchdetail.jsp?v_tablearray=bibliosm,serbibm,apabibibm,mmbibm,&amp;v_recno=3775451&amp;v_curtable=bibliosm&amp;site=null" target="_blank">
+                            <img class="img" src="https://www.szlib.org.cn/index.php?client=szlib&amp;isbn=9787510842689/cover" width="90" height="120"></a>
+
+                        <h3 class="title">
+                            <a href="searchdetail.jsp?v_tablearray=bibliosm,serbibm,apabibibm,mmbibm,&amp;v_recno=3775451&amp;v_curtable=bibliosm&amp;site=null" target="_blank" title="花:(日)杉本秀太郎文/(日)安野光雅图 李丹译">
+
+                                <!--导师名字-->>
+
+                            </a></h3>
+                        <div class="info">
+                            <span class="author">研究领域</span>
+                            <span class="publisher"></span>
+                            <span class="dates"></span>
+                        </div>
+                        <div class="text">
+                            个人简介
+                        </div>
+
+                        <a class="btn_2" name="detail" href="searchdetail.jsp?v_tablearray=bibliosm,serbibm,apabibibm,mmbibm,&amp;v_recno=3775451&amp;v_curtable=bibliosm&amp;site=null" target="_blank"> 预约</a>
+                        <a href="#" class="btn_1" onclick="" style="">收藏</a>
+
+
+
+
+                        <div class="booknum_con">
+                            <div class="booknum">
+                                <span class="angle"></span>
+                                <a href="#" class="close"></a>
+                                <div class="holdingtab"></div>
+                            </div>
+                        </div>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="sidebar">
+
+
+
+
+
+
+
+        <script type="text/javascript">
+            /*
+            function getAllLibrary(query){
+
+                    $.ajax({
+                    url: 'MoreLibrary.jsp?query='+escape(query)+'&value='+encodeURIComponent(''),
+                    success: function(html){
+                          $("#a1").parent().parent().html(html);
+                         //$(this).parent().parent().html(html);
+                    }
+                });
+            }
+            */
+            $(function(){
+                $('.personalul li strong').toggle(function() {
+                    $(this).parents('li').addClass('show')
+                }, function() {
+                    $(this).parents('li').removeClass('show')
+                });
+            })
+
+
+
+        </script>
+
+
+
+    </div>
+    <div class="con_top">
+
+        <div class="paginal paginal_1">
+            <form name="EndForm" method="post" action="searchshow.jsp" onsubmit="return EndGoPage()">
+                页码:<b>1</b>/<b>3348</b>页 每页 <b>10</b> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <font face="webdings" color="#FF0000">9</font>
+                <b><font color="red">1</font></b>
+                <a href="javascript:GotoPage(2)"><b>2</b></a>
+                <a href="javascript:GotoPage(3)"><b>3</b></a>
+                <a href="javascript:GotoPage(4)"><b>4</b></a>
+                <a href="javascript:GotoPage(5)"><b>5</b></a>
+                <a href="javascript:GotoPage(6)"><b>6</b></a>
+                <a href="javascript:GotoPage(7)"><b>7</b></a>
+                <a href="javascript:GotoPage(8)"><b>8</b></a>
+                <a href="javascript:GotoPage(9)"><b>9</b></a>
+                <a href="javascript:GotoPage(10)"><b>10</b></a>
+                <a href="javascript:GotoPage(11)" title="后10页"><font face="webdings">8</font></a>
+                <a href="javascript:GotoPage(3348)" title="尾页"><font face="webdings">:</font></a>
+
+                <input type="hidden" name="v_page">
+            </form>
+            <script language="javascript">
+                function EndGoPage()
+                {
+                    document.PageForm.v_page.value = document.EndForm.v_page.value;
+                    document.PageForm.submit();
+                    return false;
+                }
+            </script>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
