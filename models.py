@@ -22,9 +22,9 @@ class User(db.Model, UserMixin):
 
 class Appoint(db.Model):
     __tablename__ = 'appointment'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    appointment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     appointment_creat_time = db.Column(db.String(64), default=datetime.date.today())
-    prof_id = db.Column(db.Integer, db.ForeignKey('prof.prof_id'))
+    prof_id = db.Column(db.Integer, db.ForeignKey('prof_info.prof_id'))
     student_id = db.Column(db.Integer, db.ForeignKey('student.student_id'))
     start_time = db.Column(db.DATETIME, nullable=False)
     end_time = db.Column(db.DATETIME, nullable=False)
