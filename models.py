@@ -20,10 +20,10 @@ class User(db.Model, UserMixin):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-class Appoint(db.Model):
+class Appointment(db.Model):
     __tablename__ = 'appointment'
     appointment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    appointment_creat_time = db.Column(db.String(64), default=datetime.date.today())
+    appointment_creat_time = db.Column(db.DATETIME, default=datetime.date.today())
     prof_id = db.Column(db.Integer, db.ForeignKey('prof_info.prof_id'))
     student_id = db.Column(db.Integer, db.ForeignKey('student.student_id'))
     start_time = db.Column(db.DATETIME, nullable=False)
@@ -43,10 +43,10 @@ class Prof_info(db.Model):
     __tablename__ = 'prof_info'
     prof_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     prof_name = db.Column(db.String(20), nullable=False)
-    prof_pic = db.Column(db.String(128), nullable=False)
-    prof_title = db.Column(db.String(30), nullable=False)
+    prof_pic = db.Column(db.String(100), nullable=False)
+    prof_title = db.Column(db.String(10), nullable=False)
     prof_email = db.Column(db.String(30), nullable=False)
-    prof_interest = db.Column(db.String, nullable=False)
+    prof_interest = db.Column(db.TEXT, nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey('department.department_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
