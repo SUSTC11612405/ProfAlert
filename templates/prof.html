@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
     <meta charset="UTF-8">
-    <title>用户登录</title>s
+    <title>用户登录</title>
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
                 <td>{{ i.student_name}}</td>
                 <td>{{ prof_name  }}</td>
                 <td>{{ i.start_time }} - {{ i.end_time }}</td>
-                {% if student %}
+                {% if prof %}
                 <td><input  name="trrz.html" type="button" class="btn btn-success"
                         id="trrz.html" value="取消" onclick="window.location.href='{{ url_for('prof_cancel', id=i.appointment_id) }}'"/></td>
                 {% endif %}
