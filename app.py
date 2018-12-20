@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, session, url_for, redirect, jsonify, flash
+from flask import Flask, render_template, request, session, url_for, redirect, flash
 from elasticsearch import Elasticsearch
 from models import *
 import config
 from exts import db
 from flask_login import current_user, login_required
 
+
+es = Elasticsearch()
 app = Flask(__name__)
 app.config.from_object(config)
 db.init_app(app)
@@ -14,26 +16,26 @@ login_manager.init_app(app)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
+        #prof_info = Prof.query.filter(Prof.prof_id == 2).first()
+        #return render_template('prof_info.html', prof_info=prof_info)
+        #return render_template('result_test.html')
         return render_template('index.html')
-    elif request.method == 'POST':
 
-        content = request.form.get('search_content')
-        es = Elasticsearch()
+    elif request.method == 'POST':
+        content = request.form.get('v_value')
+
         body = {
             "query": {
                 "match": {
-                    "age": 21
+                    "age": content
                 }
             }
         }
+
         # Match默认匹配某个字段
-        response = es.search(index="my-index", doc_type="my-index", body=body)
-        size = response['hits']['total']
+        result = es.search(index="my-index", doc_type="my-index", body=body)
 
-
-        a = (response['hits']['hits'][0]['_source']['name'])
-
-        return render_template('index.html', name=a, age=21)
+        return render_template('result_test.html', result=result)
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -51,10 +53,10 @@ def signin():
                 return redirect(url_for('index'))
             else:
                 flash('密码错误')
-                return render_template('signin.html')
+                return redirect(url_for('signin'))
         else:
             flash('当前用户不存在')
-            return render_template('signin.html')
+            return redirect(url_for('signin'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -68,20 +70,21 @@ def signup():
 
         if password1 != password2:
             flash('两次密码不一致，请核对')
-            return render_template('signup.html')
+            return redirect(url_for('signup'))
         else:
             user = User.query.filter(User.email == email).first()
             if user:
                 flash('该邮箱已经被注册，请更换邮箱')
-                return render_template('signup.html')
+                return redirect(url_for('signup'))
             else:
                 user = User()
                 user.password = password1
                 user.email = email
+                user.role_id = 2
                 db.session.add(user)
                 db.session.commit()
                 flash("注册成功")
-                return redirect(url_for('index'))
+                return redirect(url_for('signin'))
 
 
 @app.route('/signout')
@@ -201,18 +204,18 @@ def prof(id):
         pass
 
 
-@app.route('/teacher_Info/<teacher_info_id>', methods=['GET', 'POST'])
-def teachersInfo(teacher_info_id):
+@app.route('/profBase', methods=['GET', 'POST'])
+def prof_base():
     if request.method == "GET":
-        prof_info = Prof.query.filter(Prof.prof_id == teacher_info_id).first()
-        return render_template('teacher_info.html', prof_info=prof_info)
+        return render_template('prof_base.html')
 
 
-@app.route('/teacher_base', methods=['GET', 'POST'])
-def teachersBase():
+@app.route('/prof_info/<prof_info_id>', methods=['GET', 'POST'])
+def prof_info(prof_info_id):
     if request.method == "GET":
+        prof_info = Prof.query.filter(Prof.prof_id == prof_info_id).first()
+        return render_template('prof_info.html', prof_info=prof_info)
 
-        return render_template('teacher_base.html')
 
 @app.context_processor
 def my_context_processor():
@@ -248,6 +251,11 @@ def student_cancel(id):
     return redirect(url_for('student', id=id))
 
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+
+    return render_template('result_test.html')
+#
 # @app.errorhandler(404)
 # def not_found():
 #     return "一百年专业错误处理"
