@@ -15,31 +15,46 @@
     </style>
 
 </head>
-<body >
-<!--导航-->
-<div class="navbar navbar-default" style="padding-top:0 ">
+<body>
+<div class="navbar-fixed navbar-default" >
 
     <div class="container-fluid" >
         <!--logo和导航按钮-->
         <div class="navbar-brand" >
-            <a href="{{ url_for('index') }}" ><img alt="Brand" src="{{ url_for('static',filename ='picture/badge.png') }}" height="30" width="25" ></a>
+            <a href="index.html" ><img alt="Brand" src="{{ url_for('static',filename ='picture/badge.png') }}" height="30" width="25" ></a>
             <a>南方科技大学导师预约系统</a>
         </div>
             <!--导航内容-->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right"  style="margin:10px;">
-                <input  name="trrz.html" type="button" class="btn btn-success"
-                        id="trrz.html" value="登录" onclick="window.location.href='{{ url_for('signin') }}'"/>
+                {% if user %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% if user.role_id == 1%}
+                        <li><a href="{{ url_for('student', id=user.id) }}">个人主页</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('prof', id=user.id) }}">个人主页</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('edit_profile') }}">修改基本信息</a></li>
+                        <li><a href="{{ url_for('change_password') }}">修改密码</a></li>
+                        <li><a href="{{ url_for('signout') }}">登出</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li>
+                <input name="trrz.html" type="button" class="btn btn-success" style="float:right;margin-left:20px;"
+                   id="trrz.html" value="登录" onclick="window.location='{{ url_for('signin') }}'"/>
+                </li>
+                {% endif %}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="{{ url_for('index')}}">首页</a></li>
-              <li><a href="{{ url_for('teachersInfo')}}">导师库</a></li>
-              <li><a href="http://www.sustc.edu.cn">学校官网</a></li>
-              <li><a href="{{ url_for('signin')}}">个人主页</a></li>
-              <!--这里要加个判断：case 1: 已登录，直接跳转个人信息页； case 2: 未登录，跳转登录界面-->
-          </ul>
-         </div>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">导师库</a></li>
+                <li><a href="http://www.sustc.edu.cn">学校官网</a></li>
+            </ul>
+        </div>
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -49,14 +64,10 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-</div>
-</div >
-<div >
+    </div>
     <article class="indsearch" >
-
         <div class="searchtab_show" >
             <div class="searchtab_show_in">
-
                 <div class="tab_text" style="visibility: visible;">
                     <div class="inputbox">
                         <span class="delico" style="display: none;"></span>
@@ -66,9 +77,15 @@
                 </div>
             </div>
         </div>
-
     </article>
 </div>
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+   {{ message }}
+</div>
+{% endfor %}
 
 {% block content %}
 {% endblock %}

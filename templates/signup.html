@@ -2,7 +2,6 @@
 {% block head %}
     <meta charset="UTF-8">
     <title>用户注册</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static',filename ='css/signup.css') }}">
 {% endblock %}
 {% block content %}
@@ -14,7 +13,7 @@
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password1" required>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password2" required>
+        <input type="password" id="inputPassword2" class="form-control" placeholder="Password" name="password2" required>
         <div class="checkbox">
 
         </div>

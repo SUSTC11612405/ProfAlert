@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
     <meta charset="UTF-8">
-    <title>用户登录</title>
+    <title>用户登录</title>s
 {% endblock %}
 
 {% block content %}
@@ -9,13 +9,12 @@
     <div class="container" id="c">
         <ul class="nav navbar-nav navbar-left">
             <li><a href="#">个人信息</a></li>
-            <li><a href="#">我的预约</a></li>
-            <li><a href="#">我的收藏</a></li>
+            <li><a href="#">日程设置</a></li>
         </ul>
     </div>
 </nav>
 <div class="panel panel-info">
-    <div class="panel-heading">我的预约</div>
+    <div class="panel-heading">日程表</div>
     <div class="panel-body" style="background-color:  #FFF; padding-top: 20px;">
     <table border="1px" class="table table-bordered">
         <tr>
@@ -28,27 +27,17 @@
         {% for i in appointment %}
             <tr>
                 <td>{{ i.appointment_creat_time }}</td>
-                <td>{{ student_name }}</td>
-                <td>{{ i.prof_name }}</td>
+                <td>{{ i.student_name}}</td>
+                <td>{{ prof_name  }}</td>
                 <td>{{ i.start_time }} - {{ i.end_time }}</td>
                 {% if student %}
                 <td><input  name="trrz.html" type="button" class="btn btn-success"
-                        id="trrz.html" value="取消" onclick="window.location.href='{{ url_for('student_cancel', id=i.appointment_id) }}'"/></td>
+                        id="trrz.html" value="取消" onclick="window.location.href='{{ url_for('prof_cancel', id=i.appointment_id) }}'"/></td>
                 {% endif %}
             </tr>
         {% endfor %}
 
     </table>
-    </div>
-</div>
-
-
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">我的收藏</h3>
-    </div>
-    <div class="panel-body">
-        Panel content
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <title>修改基本信息</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/signin.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container">
+
+    <form class="form-signin" method="POST">
+        <h2 class="form-signin-heading" >修改基本信息</h2>
+        {% if student %}
+        <label for="studentName" class="sr-only">Student Name</label>
+        <input type="text" id="studentName" class="form-control" placeholder="{{ student.student_name }}" name="student_name" autofocus>
+        <label for="studentEmail" class="sr-only">Student Email</label>
+        <input type="text" id="studentEmail" class="form-control" placeholder="{{ student.student_email }}" name="student_email">
+        <label for="studentBrief" class="sr-only">Student Brief</label>
+        <input type="text" id="studentBrief" class="form-control" placeholder="{{ student.student_brief }}" name="student_brief">
+        {% endif %}
+        {% if prof %}
+        <label for="profName" class="sr-only">Prof Name</label>
+        <input type="text" id="profName" class="form-control" placeholder="{{ prof.prof_name }}" name="prof_name" autofocus>
+        <label for="profEmail" class="sr-only">Prof Email</label>
+        <input type="text" id="profEmail" class="form-control" placeholder="{{ prof.prof_email }}" name="prof_email">
+        <label for="profInterest" class="sr-only">Prof Interest</label>
+        <input type="text" id="profInterest" class="form-control" placeholder="{{ prof.prof_interest }}" name="prof_interest">
+        {% endif %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">确认修改</button>
+
+
+    </form>
+
+</div>
+{% endblock %}
+
