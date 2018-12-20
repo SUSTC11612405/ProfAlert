@@ -1,0 +1,197 @@
+.navbar-default .navbar-header{
+    color: #348885;
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+
+}
+.navbar-default .navbar-brand{
+    font-size: 30px;
+    font-family: "Arial Black", serif;
+    font-weight: bold;
+
+}
+
+.navbar-default li a {
+    font-size: 24px;
+    font-family: "Arial Black", serif;
+    font-weight: bold;
+    color: #242327;
+
+}
+
+
+.navbar-child.navbar-fixed{
+    font-size: 20px;
+    font-family: "Arial Black", serif;
+    font-weight: bold;
+    color: antiquewhite;
+    height: 40px;
+}
+
+.indsearch_in{
+    padding:0 0 0 0;
+}
+
+
+.searchtab_show{
+    position:relative;
+    margin-top: 0;
+    padding: 30px 500px 5px 410px;
+    background-color: #57aea9;
+    height:100px;
+}
+.searchtab_show_in{
+    position:relative;
+
+}
+.searchtab_show .tab_text{
+    position:absolute;
+    width:50%;
+    visibility:hidden;
+}
+
+.searchtab_show .inputbox{
+    margin:0;
+    text-align:center;
+    overflow:hidden; zoom:1;
+    padding:0 120px 0 0;
+    height:50px;
+    width:520px;
+    background-color:#fff;
+    border-left:1px solid #f7f7f7;
+
+
+}
+
+.searchtab_show .input{
+    float:left;
+    padding:0 0 0 3%;
+    width:93%;
+    border:none;
+    background:none;
+    height:50px;
+    line-height:50px;
+    font-size:16px;
+}
+.searchtab_show .submit{
+    float:right;
+    margin-right:-120px;
+    padding:0;
+    width:120px;
+    height:50px;
+    background:#ffc000 url(http://lib.sustc.edu.cn/media/images/ico.png) no-repeat 48px -140px;
+    border:none;
+
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+}
+.browserTips{
+    margin-top:10px;
+    text-align:center;
+}
+.browserTips .in{
+    display:inline-block;
+    padding:5px 20px;
+    background-color:#fffef2;
+    border:1px solid #fff9c5;
+}
+
+
+table{empty-cells:show;border-collapse:collapse;border-spacing:0}
+table,td,th{vertical-align: middle;}
+input,select{vertical-align:middle;}
+input,select,textarea{font-family:tahoma,"Microsoft YaHei",arial,verdana,sans-serif;font-size:14px;}
+input[type=button], input[type=submit]{-webkit-appearance: none;}
+tab_text.input{font-family:tahoma,"Microsoft YaHei",arial,verdana,sans-serif;font-size:14px;}
+textarea{resize:vertical;}
+
+/*导师库界面设计*/
+.cont_page{
+    background-color:#fff;
+}
+.page_title{
+    overflow:hidden; zoom:1;
+    border-bottom:1px solid #eee;
+}
+.page_title .title{
+    float:left;
+    padding:0 30px;
+    height:60px;
+    line-height:60px;
+    background:#2eaf90 url(../images/title_1_bg.png) no-repeat left top;
+    font-size:24px;
+    font-weight:normal;
+    color:#fff;
+}
+.page_title .search, .customtab_title .search{
+    float:right;
+    margin:12px 20px 0 0;
+}
+.page_title .search .input, .customtab_title .search .input{
+    float:left;
+    padding:0 0 0 10px;
+    height:36px;
+    line-height:36px;
+    border:1px solid #ccc;
+}
+.page_title .search .submit, .customtab_title .search .submit{
+    float:left;
+    /*background:#ffc000 url(../images/ico.png) no-repeat 12px -893px;*/
+    background:#ffc000 url(http://lib.sustc.edu.cn/media/images/ico.png) no-repeat 12px -142px;
+    border:none;
+    width:50px;
+    height:38px;
+}
+
+
+.subjectdata{
+    border:2px solid #eee;
+    border-left:1px solid #eee;
+    border-right:1px solid #eee;
+
+}
+.subjectdata .title{
+
+}
+.subdatalist{
+    overflow:hidden;
+}
+.subdatalist li{
+    float: left;
+    width:103px;
+    margin:0 10px 0px 0;
+}
+.subdatalist li a{
+    display:block;
+    /*height:25px;*/
+    line-height:22px;
+}
+.subdatalist li a:hover,.subdatalist li.active a{ color:#ed7423;}
+.subdatalist li .title_1{
+}
+.subdatalist li .closebtn{
+    display:none;
+    width:20px;
+    height:25px;
+    background:url(../images/close_1.png) no-repeat left 0;
+    float:left;
+    display:none;
+}
+.subdatalist li.active .title_1{
+}
+.subdatalist li.active .closebtn{}
+
+
+.literaturedata{
+    border:2px solid #eee;
+    border-left:none;
+}
+
+.subjectdata_on{
+    background:#fff;
+    border:2px solid #eee;
+    width:226px;
+}
+.subjectdata_on .dateheight{ padding:0;}
