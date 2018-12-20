@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+<html lang="en">
+{% block head %}
+    <meta charset="UTF-8">
+    <title>显示结果测试</title>
+    <link rel="shortcut icon" href="http://lib.sustc.edu.cn/media/images/logo_2.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/style.css') }}">
+{#    <link rel="stylesheet" href="{{ url_for('static',filename ='css/teacher_style.css') }}">#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename ='css/reset.css') }}">#}
+{% endblock %}
+
+{% block content %}
+<div>
+    搜索结果
+</div>
+<div class="people_view_title clearfix"><h4>电子邮箱:</h4>你好吗</div>
+<ul class="posts">
+    {% for i in result['hits']['hits'] %}
+
+    <li>
+        <div>
+            {{ i['_source']['age'] }}
+        </div>
+
+        <div class="post-date">时间显示</div>
+        <div class="post-author">
+            <a href="#">
+                 {{ i['_source']['name'] }}
+            </a>
+        </div>
+        <div class="post-body">描述显示</div>
+    </li>
+
+
+    {% endfor %}
+</ul>
+{% endblock %}

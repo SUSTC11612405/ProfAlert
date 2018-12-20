@@ -26,7 +26,7 @@ def index():
 
         body = {
             "query": {
-                "match": {
+                "term": {
                     "age": content
                 }
             }
