@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="http://lib.sustc.edu.cn/media/images/logo_2.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static',filename ='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename ='css/media.css') }}">
     <script src="{{ url_for('static',filename ='JS/submit_verify.js') }}"></script>
     <style type="text/css">
         .btn {
@@ -17,9 +16,9 @@
 
 </head>
 <body>
-<div class="navbar-fixed navbar-default" >
+<div class="navbar-fixed-top navbar-default" style="padding-top:0 ">
 
-    <div class="container-fluid" >
+    <div class="container-fluid" style="margin-top: auto" >
         <!--logo和导航按钮-->
         <div class="navbar-brand" >
             <a href="{{ url_for('index') }}" ><img alt="Brand" src="{{ url_for('static',filename ='picture/badge.png') }}" height="30" width="25" ></a>
@@ -27,8 +26,8 @@
         </div>
             <!--导航内容-->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right"  style="margin:10px;">
-                {% if user %}
+            {% if user %}
+            <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if user.role_id == 1%}{{ student.student_name }}{% else %}{{ prof.prof_name }}{% endif %}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -42,15 +41,14 @@
                         <li><a href="{{ url_for('signout') }}">登出</a></li>
                     </ul>
                 </li>
-                {% else %}
-                <li>
+            </ul>
+            {% else %}
+            <ul class="nav navbar-nav navbar-right" style="margin:10px;">
                 <input name="trrz.html" type="button" class="btn btn-success" style="float:right;margin-left:20px;"
                    id="trrz.html" value="登录" onclick="window.location='{{ url_for('signin') }}'"/>
-                </li>
-                {% endif %}
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
+            {% endif %}
+            <ul class="nav navbar-nav navbar-center">
                 <li><a href="{{ url_for('index') }}">首页</a></li>
                 <li><a href="{{ url_for('prof_base') }}">导师库</a></li>
                 <li><a href="http://www.sustc.edu.cn">学校官网</a></li>
@@ -66,6 +64,8 @@
             </button>
         </div>
     </div>
+</div>
+<div>
     <article class="indsearch" >
         <div class="searchtab_show" >
             <div class="searchtab_show_in">
