@@ -1,8 +1,6 @@
 .navbar-default .navbar-header{
     color: #348885;
-    position: absolute;
-    top: 0;
-    white-space: nowrap;
+    position:relative;
 
 }
 .navbar-default .navbar-brand{
@@ -29,38 +27,33 @@
     height: 40px;
 }
 
-.indsearch_in{
-    padding:0 0 0 0;
-}
-
-
 .searchtab_show{
     position:relative;
-    margin-top: 0;
+    margin-top: 50px;
     padding: 30px 500px 5px 410px;
     background-color: #57aea9;
     height:100px;
+
 }
 .searchtab_show_in{
     position:relative;
 
 }
 .searchtab_show .tab_text{
-    position:absolute;
+    position:relative;
     width:50%;
     visibility:hidden;
 }
 
 .searchtab_show .inputbox{
-    margin:0;
+    margin:0 auto;
     text-align:center;
     overflow:hidden; zoom:1;
     padding:0 120px 0 0;
     height:50px;
-    width:520px;
+    width:500px;
     background-color:#fff;
     border-left:1px solid #f7f7f7;
-
 
 }
 
@@ -78,7 +71,7 @@
     float:right;
     margin-right:-120px;
     padding:0;
-    width:120px;
+    width:145px;
     height:50px;
     background:#ffc000 url(http://lib.sustc.edu.cn/media/images/ico.png) no-repeat 48px -140px;
     border:none;
