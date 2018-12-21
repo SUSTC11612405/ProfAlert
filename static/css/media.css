@@ -431,7 +431,12 @@
 	}
 	.indlinkslide .swiper-slide .img img{ width:100%;height:auto;}
 	
-	.indsearch{}
+	.indsearch{
+	    margin: 0 auto;
+        padding: 90px 0 70px;
+        width: 700px;
+        max-width: 100%;
+	}
 	.searchtab_tit{
 		padding:5px 5px 0;
 		background-color:#348885;
@@ -469,9 +474,22 @@
 	.indsearch .selectbox .select{
 		width:100%;
 	}
-	.searchtab_show{ height:105px;}
+	.searchtab_show{
+        position: relative;
+        padding: 5px;
+        background-color: #348885;
+        height: 50px;
+	}
 	.searchtab_show .tab_text{}
-	.searchtab_show .inputbox{ padding-right:100px;}
+	.searchtab_show .inputbox{
+	    overflow: hidden;
+        zoom: 1;
+        padding: 0 120px 0 0;
+        height: 50px;
+        background-color: #fff;
+        border-left: 1px solid #f7f7f7;
+        position: relative;
+	}
 	.searchtab_show .input::-webkit-input-placeholder{font-size:15px;}
 
 	.searchtab_show .inputbox .delico{right:120px;}

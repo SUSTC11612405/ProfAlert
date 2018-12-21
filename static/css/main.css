@@ -1,14 +1,15 @@
-
-
 .navbar-default .navbar-header{
     color: #348885;
-    position:relative;
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
 
 }
 .navbar-default .navbar-brand{
     font-size: 30px;
     font-family: "Arial Black", serif;
     font-weight: bold;
+
 }
 
 .navbar-default li a {
@@ -25,16 +26,17 @@
     font-family: "Arial Black", serif;
     font-weight: bold;
     color: antiquewhite;
-
+    height: 40px;
 }
 
 .indsearch_in{
-    padding:0 10px;
+    padding:0 0 0 0;
 }
 
 
 .searchtab_show{
     position:relative;
+    margin-top: 0;
     padding: 30px 500px 5px 410px;
     background-color: #57aea9;
     height:100px;
@@ -50,7 +52,7 @@
 }
 
 .searchtab_show .inputbox{
-    margin:0 auto;
+    margin:0;
     text-align:center;
     overflow:hidden; zoom:1;
     padding:0 120px 0 0;
